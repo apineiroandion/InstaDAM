@@ -15,6 +15,22 @@ public class Usuario {
         this.siguiendo = new ArrayList<>();
     }
 
+    public ArrayList<String> listarTitulosPublicaciones() {
+        ArrayList<String> titulos = new ArrayList<>();
+        for(int i = 0; i < publicaciones.size(); i++) {
+            titulos.add(publicaciones.get(i).getTitulo());
+        }
+        return titulos;
+    }
+
+    public ArrayList<String> listarUsuariosSiguiendo() {
+        ArrayList<String> usuariosSiguiendo = new ArrayList<>();
+        for(int i = 0; i < siguiendo.size(); i++) {
+            usuariosSiguiendo.add(siguiendo.get(i).getUserName());
+        }
+        return usuariosSiguiendo;
+    }
+
     public boolean login(String userName, String password){
         if(userName.equals(this.userName) && password.equals(this.password)){
             return true;
