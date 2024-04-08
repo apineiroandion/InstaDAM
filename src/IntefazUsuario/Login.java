@@ -94,6 +94,8 @@ public class Login extends JFrame {
                 }
                 if(usuarios.getUsuarios().get(selectedIndex).login(userName,password)){
                     System.out.println("Usuario encontrado");
+                    Perfil perfil = new Perfil(usuarios, usuarios.getUsuarios().get(selectedIndex));
+                    perfil.setVisible(true);
                 }else {
                     System.out.println("Contraseña incorecta");
                 }
