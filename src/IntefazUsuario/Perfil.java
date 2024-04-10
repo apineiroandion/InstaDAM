@@ -9,10 +9,10 @@ import java.util.Vector;
 
 public class Perfil extends JFrame{
     //añadir
-    Vector<String> data = new Vector<>();
+    Vector<String> data;
     JComboBox comboBoxPublicaciones;
     DefaultComboBoxModel modelo;
-    Vector<String> data2 = new Vector<>();
+    Vector<String> data2;
     DefaultComboBoxModel modelo2;
     JComboBox comboBoxSiguiendo;
 
@@ -64,7 +64,7 @@ public class Perfil extends JFrame{
         panel.add(seguidoresLabel, gbc);
 
         //ComboBox de Seguidores
-
+        data2 = new Vector(usuario.listarUsuariosSiguiendo());
         System.out.println(data2.stream().reduce((s, s2) -> s + " , " + s2 ));
         modelo2 = new DefaultComboBoxModel(data2);
         comboBoxSiguiendo = new JComboBox(modelo2);
@@ -95,9 +95,12 @@ public class Perfil extends JFrame{
         buscarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                BuscarUsuarios busca = new BuscarUsuarios(usuarios, usuario);
+                busca.setVisible(true);
+                data2Changed(new Vector<>(usuario.listarUsuariosSiguiendo()));
+                dispose();
             }
-        }){};
+        });
 
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
         add(panel, BorderLayout.NORTH);
@@ -107,6 +110,9 @@ public class Perfil extends JFrame{
 
     public void dataChanged(Vector<String> data){
         this.data = data;
+    }
+    public void data2Changed(Vector<String> data2){
+        this.data2 = data2;
     }
 
     private void pruebaArray (ArrayList lista){

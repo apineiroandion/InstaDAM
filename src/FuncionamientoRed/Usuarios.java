@@ -13,4 +13,12 @@ public class Usuarios {
     public void setUsuarios(ArrayList<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
+
+    public ArrayList<String> getUsuariosName() {
+        ArrayList<String> usuariosName = new ArrayList<>();
+        for (Usuario usuario : usuarios) {
+            usuariosName.add(usuario.getUserName());
+        }
+        return usuariosName;
+    }
 }
