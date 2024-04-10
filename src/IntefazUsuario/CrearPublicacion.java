@@ -65,6 +65,7 @@ public class CrearPublicacion extends JFrame {
                 String titulo = tituloField.getText();
                 String descripcion = descripcionField.getText();
                 crearPublicacion(usuario, titulo, descripcion);
+                abrirPerfil(usuarios, usuario);
                 dispose();
             }
         });
@@ -73,6 +74,7 @@ public class CrearPublicacion extends JFrame {
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                abrirPerfil(usuarios, usuario);
                 dispose();
             }
         });
@@ -80,6 +82,10 @@ public class CrearPublicacion extends JFrame {
         //Visualizar Panel
         add(panel, BorderLayout.NORTH);
         panel.setVisible(true);
+    }
+    private void abrirPerfil(Usuarios usuarios, Usuario usuario){
+        Perfil perfil = new Perfil(usuarios, usuario);
+        perfil.setVisible(true);
     }
     private void crearPublicacion(Usuario usuario, String titulo, String descripcion){
         usuario.addPublicacion(new Publicacion(titulo, descripcion));

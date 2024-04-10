@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class Perfil extends JFrame{
     public Perfil(Usuarios usuarios, Usuario usuario){
-        ArrayList<String> titulosPublicaciones = usuario.listarTitulosPublicaciones();
-        ArrayList<String> nombresUsuariosSeguidos = usuario.listarUsuariosSiguiendo();
         setTitle("Perfil Usuario");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,8 +33,8 @@ public class Perfil extends JFrame{
         panel.add(publicacionesLabel, gbc);
 
         //ComboBox de Publicaciones
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel(titulosPublicaciones.toArray());
-        JComboBox comboBoxPublicaciones = new JComboBox(modelo);
+        modelo = new DefaultComboBoxModel(data);
+        comboBoxPublicaciones = new JComboBox(modelo);
         comboBoxPublicaciones.setPreferredSize(new Dimension(150, 20));
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -56,7 +54,9 @@ public class Perfil extends JFrame{
         panel.add(seguidoresLabel, gbc);
 
         //ComboBox de Seguidores
-        DefaultComboBoxModel modelo2 = new DefaultComboBoxModel(nombresUsuariosSeguidos.toArray());
+        Vector<String> data2 = new Vector(usuario.listarUsuariosSiguiendo());
+        System.out.println(data2.stream().reduce((s, s2) -> s + " , " + s2 ));
+        DefaultComboBoxModel modelo2 = new DefaultComboBoxModel(data2);
         JComboBox comboBoxSiguiendo = new JComboBox(modelo2);
         comboBoxSiguiendo.setPreferredSize(new Dimension(150, 20));
         gbc.gridx = 1;
@@ -75,17 +75,27 @@ public class Perfil extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 CrearPublicacion cp = new CrearPublicacion(usuarios, usuario);
                 cp.setVisible(true);
+                pruebaArray(usuario.getPublicaciones());
+                dataChanged(new Vector<>(usuario.listarTitulosPublicaciones()));
+                dispose();
             }
         });
-
-
-
-
-
 
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
         add(panel, BorderLayout.NORTH);
 
         panel.setVisible(true);
+    }
+
+    public void dataChanged(Vector<String> data){
+        this.data = data;
+        //todo: buscar forma de llamar al modelo a al combo para refrescar datos , preguntar a google .
+    }
+
+    private void pruebaArray (ArrayList lista){
+        System.out.println("Prueba Array");
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i)+" item");
+        }
     }
 }
