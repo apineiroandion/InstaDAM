@@ -5,8 +5,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Perfil extends JFrame{
+
+    Vector<String> data = new Vector<>();
+    JComboBox comboBoxPublicaciones;
+    DefaultComboBoxModel modelo;
+
     public Perfil(Usuarios usuarios, Usuario usuario){
         setTitle("Perfil Usuario");
         setSize(800, 600);
@@ -31,7 +37,8 @@ public class Perfil extends JFrame{
         gbc.gridx = 0;
         gbc.gridy = 1;
         panel.add(publicacionesLabel, gbc);
-
+        data = new Vector(usuario.listarTitulosPublicaciones());
+        System.out.println(data.stream().reduce((s, s2) -> s + " , " + s2 ));
         //ComboBox de Publicaciones
         modelo = new DefaultComboBoxModel(data);
         comboBoxPublicaciones = new JComboBox(modelo);
@@ -58,6 +65,7 @@ public class Perfil extends JFrame{
         System.out.println(data2.stream().reduce((s, s2) -> s + " , " + s2 ));
         DefaultComboBoxModel modelo2 = new DefaultComboBoxModel(data2);
         JComboBox comboBoxSiguiendo = new JComboBox(modelo2);
+
         comboBoxSiguiendo.setPreferredSize(new Dimension(150, 20));
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -89,7 +97,6 @@ public class Perfil extends JFrame{
 
     public void dataChanged(Vector<String> data){
         this.data = data;
-        //todo: buscar forma de llamar al modelo a al combo para refrescar datos , preguntar a google .
     }
 
     private void pruebaArray (ArrayList lista){

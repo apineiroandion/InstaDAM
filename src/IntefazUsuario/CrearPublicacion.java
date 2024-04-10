@@ -89,6 +89,7 @@ public class CrearPublicacion extends JFrame {
     }
     private void crearPublicacion(Usuario usuario, String titulo, String descripcion){
         usuario.addPublicacion(new Publicacion(titulo, descripcion));
+
         JOptionPane.showMessageDialog(this, "Publicacion creada");
     }
 }
