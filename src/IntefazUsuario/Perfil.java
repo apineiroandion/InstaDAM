@@ -12,6 +12,9 @@ public class Perfil extends JFrame{
     Vector<String> data = new Vector<>();
     JComboBox comboBoxPublicaciones;
     DefaultComboBoxModel modelo;
+    Vector<String> data2 = new Vector<>();
+    DefaultComboBoxModel modelo2;
+    JComboBox comboBoxSiguiendo;
 
     public Perfil(Usuarios usuarios, Usuario usuario){
         setTitle("Perfil Usuario");
@@ -61,10 +64,10 @@ public class Perfil extends JFrame{
         panel.add(seguidoresLabel, gbc);
 
         //ComboBox de Seguidores
-        Vector<String> data2 = new Vector(usuario.listarUsuariosSiguiendo());
+
         System.out.println(data2.stream().reduce((s, s2) -> s + " , " + s2 ));
-        DefaultComboBoxModel modelo2 = new DefaultComboBoxModel(data2);
-        JComboBox comboBoxSiguiendo = new JComboBox(modelo2);
+        modelo2 = new DefaultComboBoxModel(data2);
+        comboBoxSiguiendo = new JComboBox(modelo2);
 
         comboBoxSiguiendo.setPreferredSize(new Dimension(150, 20));
         gbc.gridx = 1;
@@ -88,6 +91,13 @@ public class Perfil extends JFrame{
                 dispose();
             }
         });
+
+        buscarUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        }){};
 
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
         add(panel, BorderLayout.NORTH);
