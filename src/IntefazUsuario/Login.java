@@ -1,6 +1,7 @@
 package IntefazUsuario;
 
 import FuncionamientoRed.*;
+import UsuariosDePrueba.UsuariosPrueba;
 
 import javax.swing.*;
 import java.awt.*;
@@ -106,6 +107,7 @@ public class Login extends JFrame {
     }
 
     public static void main(String[] args) {
+        //Usuarios usuarios = UsuariosPrueba.crearUsuariosPrueba();;
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Login(new Usuarios());
