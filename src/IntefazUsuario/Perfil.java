@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class Perfil extends JFrame{
-
+    //añadir
     Vector<String> data = new Vector<>();
     JComboBox comboBoxPublicaciones;
     DefaultComboBoxModel modelo;
