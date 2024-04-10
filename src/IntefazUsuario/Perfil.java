@@ -89,7 +89,6 @@ public class Perfil extends JFrame{
 
     public void dataChanged(Vector<String> data){
         this.data = data;
-        //todo: buscar forma de llamar al modelo a al combo para refrescar datos , preguntar a google .
     }
 
     private void pruebaArray (ArrayList lista){
