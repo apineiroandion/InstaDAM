@@ -73,7 +73,8 @@ public class Perfil extends JFrame{
         nuevaPublicacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                CrearPublicacion cp = new CrearPublicacion(usuarios, usuario);
+                cp.setVisible(true);
             }
         });
 
