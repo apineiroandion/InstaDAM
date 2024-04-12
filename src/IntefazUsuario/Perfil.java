@@ -135,7 +135,6 @@ public class Perfil extends JFrame{
             }
         });
 
-        //TODO: Listener que recoje el string selecciondo del comboBox siguiendo, instancia la clase VerPerfil, y le pasa el usuario seleccionado
         verSiguiendo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
