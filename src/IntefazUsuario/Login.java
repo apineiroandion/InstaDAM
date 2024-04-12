@@ -84,23 +84,21 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String userName = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
-                int selectedIndex = 0;
                 for(int i = 0; i < usuarios.getUsuarios().size(); i++){
                     if (usuarios.getUsuarios().get(i).getUserName().equals(userName)){
-                        selectedIndex = i;
+                        int selectedIndex = i;
+                        if(usuarios.getUsuarios().get(selectedIndex).login(userName,password)){
+                            System.out.println("Usuario encontrado");
+                            Perfil perfil = new Perfil(usuarios, usuarios.getUsuarios().get(selectedIndex));
+                            perfil.setVisible(true);
+                        }else {
+                            System.out.println("Contraseña incorecta");
+                        }
                     }else{
                         JOptionPane.showMessageDialog(null, "Usuario no existe");
                         return;
                     }
                 }
-                if(usuarios.getUsuarios().get(selectedIndex).login(userName,password)){
-                    System.out.println("Usuario encontrado");
-                    Perfil perfil = new Perfil(usuarios, usuarios.getUsuarios().get(selectedIndex));
-                    perfil.setVisible(true);
-                }else {
-                    System.out.println("Contraseña incorecta");
-                }
-
             }
         });
 
