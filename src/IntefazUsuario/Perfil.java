@@ -50,9 +50,16 @@ public class Perfil extends JFrame{
         gbc.gridy = 1;
         panel.add(comboBoxPublicaciones, gbc);
 
+        //Boton para ver publicacion
+        JButton verPublicacion = new JButton("Ver Publicacion");
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        panel.add(verPublicacion, gbc);
+
+
         //Boton de añadir publicacion
         JButton nuevaPublicacion = new JButton("Nueva Publicacion");
-        gbc.gridx = 2;
+        gbc.gridx = 3;
         gbc.gridy = 1;
         panel.add(nuevaPublicacion, gbc);
 
@@ -74,9 +81,15 @@ public class Perfil extends JFrame{
         gbc.gridy = 2;
         panel.add(comboBoxSiguiendo, gbc);
 
+        //Boton para ver perfil de usuario que sigues
+        JButton verSiguiendo = new JButton("Ver Perfil");
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        panel.add(verSiguiendo, gbc);
+
         //Boton para buscar usuarios
         JButton buscarUsuario = new JButton("Buscar Usuario");
-        gbc.gridx = 2;
+        gbc.gridx = 3;
         gbc.gridy = 2;
         panel.add(buscarUsuario, gbc);
 
@@ -101,6 +114,9 @@ public class Perfil extends JFrame{
                 dispose();
             }
         });
+        //TODO: Listener que recoje el string seleccionado del comboBox publicaciones, instancia VerPublicacion, y le pasa la publicacion seleccionada
+
+        //TODO: Listener que recoje el string selecciondo del comboBox siguiendo, instancia la clase VerPerfil, y le pasa el usuario seleccionado
 
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
         add(panel, BorderLayout.NORTH);
