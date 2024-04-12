@@ -107,6 +107,13 @@ public class Login extends JFrame {
                 }
             }
         });
+        noLoginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VerTodasLasPublicaciones vtp = new VerTodasLasPublicaciones(usuarios);
+                vtp.setVisible(true);
+            }
+        });
 
     }
 
