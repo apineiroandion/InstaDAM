@@ -39,6 +39,8 @@ public class VerPublicacion extends JFrame {
         gbc.gridy = 2;
         panel.add(volver, gbc);
 
+
+        add(panel);
         panel.setVisible(true);
         setVisible(true);
     }
