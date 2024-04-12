@@ -21,4 +21,19 @@ public class Usuarios {
         }
         return usuariosName;
     }
+
+    public ArrayList<Publicacion> getAllPublicaciones() {
+        ArrayList<Publicacion> publicaciones = new ArrayList<>();
+        for (Usuario usuario : usuarios) {
+            publicaciones.addAll(usuario.getPublicaciones());
+        }
+        return publicaciones;
+    }
+    public ArrayList<String> getAllPublicacionesTitulo(ArrayList<Publicacion> publicaciones) {
+        ArrayList<String> publicacionesTitulo = new ArrayList<>();
+        for (Publicacion publicacion : publicaciones) {
+            publicacionesTitulo.add(publicacion.getTitulo());
+        }
+        return publicacionesTitulo;
+    }
 }
