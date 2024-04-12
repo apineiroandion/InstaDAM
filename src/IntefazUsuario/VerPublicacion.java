@@ -1,15 +1,19 @@
 package IntefazUsuario;
 
 import FuncionamientoRed.Publicacion;
+import FuncionamientoRed.Usuario;
+import FuncionamientoRed.Usuarios;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VerPublicacion extends JFrame {
-    public VerPublicacion(Publicacion publicacion) {
+    public VerPublicacion(Publicacion publicacion, Usuario usuario, Usuarios usuarios) {
         setTitle(publicacion.getTitulo());
         setSize(300, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
@@ -39,9 +43,30 @@ public class VerPublicacion extends JFrame {
         gbc.gridy = 3;
         panel.add(volver, gbc);
 
+        borrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usuario.getPublicaciones().remove(publicacion);
+                abrirPerfil(usuarios, usuario);
+                dispose();
+            }
+        });
+
+        volver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirPerfil(usuarios, usuario);
+                dispose();
+            }
+        });
+
 
         add(panel);
         panel.setVisible(true);
         setVisible(true);
+    }
+    private void abrirPerfil(Usuarios usuarios, Usuario usuario){
+        Perfil perfil = new Perfil(usuarios, usuario);
+        perfil.setVisible(true);
     }
 }

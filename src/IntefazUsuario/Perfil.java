@@ -128,7 +128,7 @@ public class Perfil extends JFrame{
                     }
                 }
                 if (contador != 0){
-                    VerPublicacion verPublicacion = new VerPublicacion(usuario.getPublicaciones().get(indice));
+                    VerPublicacion verPublicacion = new VerPublicacion(usuario.getPublicaciones().get(indice), usuario, usuarios);
                     verPublicacion.setVisible(true);
                 }
 
