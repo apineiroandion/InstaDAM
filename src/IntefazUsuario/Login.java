@@ -86,10 +86,9 @@ public class Login extends JFrame {
                 String password = String.valueOf(passwordField.getPassword());
                 for(int i = 0; i < usuarios.getUsuarios().size(); i++){
                     if (usuarios.getUsuarios().get(i).getUserName().equals(userName)){
-                        int selectedIndex = i;
-                        if(usuarios.getUsuarios().get(selectedIndex).login(userName,password)){
+                        if(usuarios.getUsuarios().get(i).login(userName,password)){
                             System.out.println("Usuario encontrado");
-                            Perfil perfil = new Perfil(usuarios, usuarios.getUsuarios().get(selectedIndex));
+                            Perfil perfil = new Perfil(usuarios, usuarios.getUsuarios().get(i));
                             perfil.setVisible(true);
                         }else {
                             System.out.println("Contraseña incorecta");
@@ -108,7 +107,7 @@ public class Login extends JFrame {
         //Usuarios usuarios = UsuariosPrueba.crearUsuariosPrueba();;
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Login(new Usuarios());
+                new Login((UsuariosPrueba.crearUsuariosPrueba()));
             }
         });
     }
