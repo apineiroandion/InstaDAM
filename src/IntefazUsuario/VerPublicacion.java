@@ -35,8 +35,8 @@ public class VerPublicacion extends JFrame {
         panel.add(borrar, gbc);
 
         JButton volver = new JButton("Volver");
-        gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
         panel.add(volver, gbc);
 
 
