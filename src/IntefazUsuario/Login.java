@@ -103,7 +103,7 @@ public class Login extends JFrame {
                     }
                 }
                 if(contador == 0){
-                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña erroneo");
                 }
             }
         });
