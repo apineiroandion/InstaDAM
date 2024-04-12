@@ -71,4 +71,12 @@ public class Usuario {
     public void setPublicaciones(ArrayList<Publicacion> publicaciones) {
         this.publicaciones = publicaciones;
     }
+
+    public ArrayList<Usuario> getSiguiendo() {
+        return siguiendo;
+    }
+
+    public void setSiguiendo(ArrayList<Usuario> siguiendo) {
+        this.siguiendo = siguiendo;
+    }
 }
