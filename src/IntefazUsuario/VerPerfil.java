@@ -1,14 +1,16 @@
 package IntefazUsuario;
-import FuncionamientoRed.*;
+
+import FuncionamientoRed.Usuario;
+import FuncionamientoRed.Usuarios;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class Perfil extends JFrame{
-    //añadir
+public class VerPerfil extends JFrame {
     Vector<String> data;
     JComboBox comboBoxPublicaciones;
     DefaultComboBoxModel modelo;
@@ -16,10 +18,10 @@ public class Perfil extends JFrame{
     DefaultComboBoxModel modelo2;
     JComboBox comboBoxSiguiendo;
 
-    public Perfil(Usuarios usuarios, Usuario usuario){
+    public VerPerfil(Usuarios usuarios, Usuario usuario){
         setTitle("Perfil Usuario");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
@@ -57,12 +59,6 @@ public class Perfil extends JFrame{
         panel.add(verPublicacion, gbc);
 
 
-        //Boton de añadir publicacion
-        JButton nuevaPublicacion = new JButton("Nueva Publicacion");
-        gbc.gridx = 3;
-        gbc.gridy = 1;
-        panel.add(nuevaPublicacion, gbc);
-
         //Label Seguidores
         JLabel seguidoresLabel = new JLabel("Perfiles que sigues");
         seguidoresLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -81,40 +77,6 @@ public class Perfil extends JFrame{
         gbc.gridy = 2;
         panel.add(comboBoxSiguiendo, gbc);
 
-        //Boton para ver perfil de usuario que sigues
-        JButton verSiguiendo = new JButton("Ver Perfil");
-        gbc.gridx = 2;
-        gbc.gridy = 2;
-        panel.add(verSiguiendo, gbc);
-
-        //Boton para buscar usuarios
-        JButton buscarUsuario = new JButton("Buscar Usuario");
-        gbc.gridx = 3;
-        gbc.gridy = 2;
-        panel.add(buscarUsuario, gbc);
-
-
-        nuevaPublicacion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CrearPublicacion cp = new CrearPublicacion(usuarios, usuario);
-                cp.setVisible(true);
-                pruebaArray(usuario.getPublicaciones());
-                dataChanged(new Vector<>(usuario.listarTitulosPublicaciones()));
-                dispose();
-            }
-        });
-
-        buscarUsuario.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BuscarUsuarios busca = new BuscarUsuarios(usuarios, usuario);
-                busca.setVisible(true);
-                data2Changed(new Vector<>(usuario.listarUsuariosSiguiendo()));
-                dispose();
-            }
-        });
-
         verPublicacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,30 +90,10 @@ public class Perfil extends JFrame{
                     }
                 }
                 if (contador != 0){
-                    VerPublicacion verPublicacion = new VerPublicacion(usuario.getPublicaciones().get(indice), usuario, usuarios);
-                    verPublicacion.setVisible(true);
+                    VerPublicacionAjena verPublicacionAjena = new VerPublicacionAjena(usuario.getPublicaciones().get(indice), usuario, usuarios);
+                    verPublicacionAjena.setVisible(true);
                 }
 
-            }
-        });
-
-        //TODO: Listener que recoje el string selecciondo del comboBox siguiendo, instancia la clase VerPerfil, y le pasa el usuario seleccionado
-        verSiguiendo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String userName = comboBoxSiguiendo.getSelectedItem().toString();
-                int indice = 0;
-                int contador = 0;
-                for (int i = 0; i < usuario.getSiguiendo().size(); i++) {
-                    if (userName.equals(usuario.getSiguiendo().get(i).getUserName())){
-                        indice = i;
-                        contador++;
-                    }
-                }
-                if (contador != 0){
-                    VerPerfil verPerfil = new VerPerfil(usuarios, usuario);
-                    verPerfil.setVisible(true);
-                }
             }
         });
 
