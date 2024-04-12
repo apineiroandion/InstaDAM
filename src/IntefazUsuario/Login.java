@@ -74,8 +74,18 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String userName = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
-                usuarios.getUsuarios().add(new Usuario(userName, password));
-                JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
+                int comprobarNombre = 0;
+                for (int i = 0; i < usuarios.getUsuarios().size(); i++) {
+                    if(userName.equals(usuarios.getUsuarios().get(i).getUserName())){
+                        comprobarNombre++;
+                    }
+                }
+                if(comprobarNombre == 0){
+                    usuarios.getUsuarios().add(new Usuario(userName, password));
+                    JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario en uso, introduce otro");
+                }
             }
         });
         //pendiente de añadir enlace a la nueva vetna de perfil
