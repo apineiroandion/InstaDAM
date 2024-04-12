@@ -149,7 +149,7 @@ public class Perfil extends JFrame{
                     }
                 }
                 if (contador != 0){
-                    VerPerfil verPerfil = new VerPerfil(usuarios, usuario);
+                    VerPerfil verPerfil = new VerPerfil(usuarios, usuario.getSiguiendo().get(indice));
                     verPerfil.setVisible(true);
                 }
             }
