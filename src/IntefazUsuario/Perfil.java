@@ -114,7 +114,26 @@ public class Perfil extends JFrame{
                 dispose();
             }
         });
-        //TODO: Listener que recoje el string seleccionado del comboBox publicaciones, instancia VerPublicacion, y le pasa la publicacion seleccionada
+
+        verPublicacion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String titulo = comboBoxPublicaciones.getSelectedItem().toString();
+                int indice = 0;
+                int contador = 0;
+                for (int i = 0; i < usuario.getPublicaciones().size(); i++) {
+                    if (titulo.equals(usuario.getPublicaciones().get(i).getTitulo())) {
+                        indice = i;
+                        contador++;
+                    }
+                }
+                if (contador != 0){
+                    VerPublicacion verPublicacion = new VerPublicacion(usuario.getPublicaciones().get(indice));
+                    verPublicacion.setVisible(true);
+                }
+
+            }
+        });
 
         //TODO: Listener que recoje el string selecciondo del comboBox siguiendo, instancia la clase VerPerfil, y le pasa el usuario seleccionado
 
